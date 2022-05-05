@@ -1,0 +1,100 @@
+{% load static %}
+
+{% block userprofile %}
+    <style>
+        .user h1{
+            font-size: 45px;
+        }
+        .updateform {
+            width: 50%;
+        }
+        .profile-img{
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+            object-fit: cover;
+            object-position: center center;
+        }
+    </style>
+    
+        <div class="container-fluid pt-5">
+            <div class="py-5"> 
+            <div class="d-lg-flex d-sm-inline">
+                <div class="me-5">
+                   <img src="{% static 'default.png' %}" class="profile-img" alt="userprofile-image" >      
+                </div>
+                <div class="pt-5 me-5 text-nowrap user">
+                    <h1 class="username fw-bold">{{user.username}}</h1>
+                    <p>
+                        <h5 class="email fs-6 text-secondary">{{user.email}}</h5>
+                    </p>
+                    <p>
+                        <h5 class="email fs-5 ">First Name: <span class="fs-6 text-secondary text-italic">{{user.first_name}}</span></h5>
+                    </p>
+                    <p>
+                        <h5 class="email fs-5 ">Last Name: <span class="fs-6 text-secondary text-italic">{{user.last_name}}</span></h5>
+                    </p>
+                    <!-- <div class="pt-4 user">
+                        <p><h4 class="text-start text-secondary fw-bold"> Wallet Details</h4></p>
+                        {% for wallet in wallet_set %}
+                            <p>
+                                <h5 class="email fs-5 ">Wallet Name: <span class="fs-6 text-secondary text-italic">{{wallet.title}}</span></h5>
+                            </p>
+                            <p>
+                                <h5 class="email fs-5 ">Currency: <span class="fs-6 text-secondary text-italic">{{wallet.currency_type}}</span></h5>
+                            </p>
+                            <p>
+                                <h5 class="email fs-5 ">Address: <span class="fs-6 text-secondary text-italic">{{wallet.wallet_address}}</span></h5>
+                            </p>
+                            <hr>
+                        {% endfor %}
+    
+                    </div> -->
+                </div>
+            </div>
+            </div>
+        </div>
+<!-- Button trigger modal -->
+    
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Wallet
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Wallet</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post">
+           {% csrf_token %}
+            <div class="were mb-4">
+                <label for="">Title</label>
+                <input type="text" class="form-control" id="name" name="title">
+            </div>
+            <div class="were mb-4">
+                <label for="">Please Select your preferred currency</label>
+                {{wallet_form.currency_type}}
+            </div>
+            <div class="were">
+                <label for="">Wallet Address</label>
+                <input type="text" class="form-control" id="email" name="wallet_address">
+            </div>
+            <div class="mb-3 form-check mt-3">
+                <label for="exampleCheck1">Please ensure the address above is the suitable address for the currency to avoid permanent loss of funds</label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+{% endblock userprofile %}
+

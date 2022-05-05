@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+<style>
+    /* .logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        
+    } */
+</style>
+{% block sidebar %}
+    <div class="sidebar">
+        <div class="logo-details">
+        <img src="{% static 'runguys_logo.jpg' %}" class="logo" alt="">
+        <span class="logo_name fw-bold">RUNGUYS INVESTMENT</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+            <a href="{% url 'account' %}" class="active">
+                <i class='bx bx-grid-alt' ></i>
+                <span class="links_name">Dashboard</span>
+            </a>
+            </li>
+            <li>
+            <a href="{% url 'deposit' %}">
+                <i class='bx bx-money' ></i>
+                <span class="links_name">Deposit</span>
+            </a>
+            </li>
+            <li>
+                <a href="{% url 'contact' %}">
+                    <i class='bx bx-message' ></i>
+                    <span class="links_name">Contact Us</span>
+                </a>
+            </li>
+            <li>
+                {% if user %}
+                <a href="{% url 'logout' %}">
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">Logout</span>
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}">
+                    <i class='bx bx-money' ></i>
+                    <span class="links_name">login</span>
+                </a>
+                {% endif %}
+            </li>
+            <li>
+                <a href="{% url 'change_password' %}">
+                    <i class='bx bx-key' ></i>
+                    <span class="links_name">Change Paswword</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock sidebar %}
